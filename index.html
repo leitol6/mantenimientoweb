@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pianissimo | Venta de Pianos Premium en Zaragoza</title>
+    <meta name="description" content="Pianissimo ofrece la venta de pianos de cola, de pared y digitales de la más alta calidad en Zaragoza. Distribuidor oficial de Steinway, Yamaha y Bösendorfer." />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- Reading Progress Bar (Plugin Reading Progress Bar) -->
+    <div class="reading-progress-bar" id="reading-progress"></div>
+
+    <!-- Mantenimiento Mode Overlay (Plugin LightStart) -->
+    <div id="maintenance-overlay" class="maintenance-screen">
+        <div class="maintenance-content">
+            <div class="maintenance-logo">🎹</div>
+            <h1 class="maintenance-title">Pianissimo Zaragoza</h1>
+            <p class="maintenance-text">Estamos afinando nuestros instrumentos digitales. Nuestra tienda online de pianos premium estará disponible muy pronto.</p>
+            
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <div class="countdown-num" id="cd-days">02</div>
+                    <div class="countdown-label">Días</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-num" id="cd-hours">14</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-num" id="cd-mins">45</div>
+                    <div class="countdown-label">Mins</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-num" id="cd-secs">30</div>
+                    <div class="countdown-label">Segs</div>
+                </div>
+            </div>
+
+            <form class="maintenance-form" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte! Te avisaremos de la inauguración.');">
+                <input type="email" class="form-control" placeholder="Tu correo electrónico" required style="border-radius: 30px 0 0 30px; background: rgba(255,255,255,0.1); border-right: none;" />
+                <button type="submit" class="btn-buy" style="border-radius: 0 30px 30px 0; padding: 0.75rem 2rem;">Notificarme</button>
+            </form>
+
+            <button class="btn-admin-bypass" id="btn-bypass-maintenance">⚙️ Acceso Administrador (Bypass)</button>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <a href="#" class="logo-container" id="logo-home">
+            <span class="logo-icon">🎹</span>
+            <span class="site-title">Pianissimo</span>
+        </a>
+
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item active" data-target="sec-inicio">
+                    <a class="nav-link">Inicio / Home</a>
+                </li>
+                <li class="nav-item" data-target="sec-blog">
+                    <a class="nav-link">Blog (bbPress)</a>
+                </li>
+                <li class="nav-item" data-target="sec-comunidad">
+                    <a class="nav-link">Comunidad (BuddyPress)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Aplicaciones <span style="font-size: 0.7rem;">▼</span></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-link" data-target="sec-docentes">Docentes</a>
+                        <a class="dropdown-link" data-target="sec-ludicas">Lúdicas (Piano)</a>
+                    </div>
+                </li>
+                <li class="nav-item" data-target="sec-contacto">
+                    <a class="nav-link">Contacto</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="user-widget">
+            <div id="logged-out-view">
+                <button class="btn-header-login" id="header-login-btn">👤 Iniciar Sesión</button>
+            </div>
+            <div id="logged-in-view" style="display: none;">
+                <div class="user-profile-badge" id="profile-badge">
+                    <div class="user-avatar" id="avatar-char">U</div>
+                    <span id="user-display-name" style="font-size: 0.9rem; font-weight: 500;">Usuario</span>
+                    <button class="btn-header-login" id="btn-logout" style="border-color: #8b0d11; color: #ff5f6d; padding: 0.2rem 0.6rem; font-size: 0.75rem;">Salir</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ================= SECCIÓN INICIO / HOME ================= -->
+        <section id="sec-inicio" class="app-section active">
+            
+            <!-- Hero Banner Premium -->
+            <div class="hero-banner">
+                <h2>El Arte del Sonido Perfecto</h2>
+                <p>Descubre nuestra selecta colección de pianos de cola y de pared. Instrumentos de las firmas más prestigiosas del mundo afinados por concertistas profesionales en nuestro showroom de Zaragoza.</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">120+</div>
+                        <div class="stat-label">Años de Tradición</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Zaragoza</div>
+                        <div class="stat-label">Sede e Inspección</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Garantía Premium</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table of Contents (Plugin Easy Table of Contents) -->
+            <div class="toc-container">
+                <div class="toc-title" id="toc-toggle">
+                    <span>Índice de Contenidos (Easy Table of Contents)</span>
+                    <span id="toc-icon">▲</span>
+                </div>
+                <ul class="toc-list" id="toc-items">
+                    <li class="toc-item"><a href="#sec-inicio">🎹 Nuestro Catálogo de Instrumentos Premium</a></li>
+                    <li class="toc-item"><a href="#catalog-start">🔍 Filtro de Pianos en Stock</a></li>
+                    <li class="toc-item"><a href="#sec-blog">💬 Foro bbPress de Discusión Pianística</a></li>
+                    <li class="toc-item"><a href="#sec-comunidad">👥 Comunidad de Pianistas BuddyPress</a></li>
+                    <li class="toc-item"><a href="#sec-docentes">📚 Recursos para Docentes de Piano</a></li>
+                    <li class="toc-item"><a href="#sec-ludicas">🎮 Piano Virtual Interactivo (Zona Lúdica)</a></li>
+                    <li class="toc-item"><a href="#sec-contacto">✉️ Formulario de Contacto & Geolocalización</a></li>
+                </ul>
+            </div>
+
+            <h3 class="section-title" id="catalog-start">Nuestro Catálogo Exclusivo</h3>
+            <p class="section-subtitle">Selecciona entre pianos acústicos de concierto, pianos de pared elegantes y sistemas híbridos digitales de alta gama.</p>
+
+            <!-- Filtros de Catálogo -->
+            <div class="catalog-filters">
+                <button class="filter-btn active" data-filter="all">Todos los Pianos</button>
+                <button class="filter-btn" data-filter="cola">De Cola</button>
+                <button class="filter-btn" data-filter="pared">De Pared</button>
+                <button class="filter-btn" data-filter="digital">Digitales Premium</button>
+            </div>
+
+            <!-- Piano Grid -->
+            <div class="piano-grid" id="pianos-container">
+                <!-- Piano 1: Steinway -->
+                <div class="piano-card" data-category="cola">
+                    <div class="piano-img-container">
+                        <img src="https://images.unsplash.com/photo-1552422535-c45813c61732?auto=format&fit=crop&w=600&q=80" alt="Steinway & Sons Model D-274" class="piano-img" />
+                        <span class="piano-tag">Concierto</span>
+                    </div>
+                    <div class="piano-content">
+                        <h4 class="piano-title">Steinway & Sons D-274</h4>
+                        <ul class="piano-features">
+                            <li>Tabla armónica de abeto alpino de selección extra.</li>
+                            <li>Macillos artesanales de fieltro de lana virgen de alta densidad.</li>
+                            <li>Puente laminado vertical con base de arce macizo.</li>
+                            <li>El preferido del 98% de los pianistas de concierto.</li>
+                        </ul>
+                        <div class="piano-footer">
+                            <span class="piano-price">165.000 €</span>
+                            <button class="btn-buy" onclick="comprarPiano('Steinway & Sons D-274', '165.000 €')">Reservar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Piano 2: Yamaha U3 -->
+                <div class="piano-card" data-category="pared">
+                    <div class="piano-img-container">
+                        <img src="https://images.unsplash.com/photo-1598653222000-6b7b7a552625?auto=format&fit=crop&w=600&q=80" alt="Yamaha U3 Premium" class="piano-img" />
+                        <span class="piano-tag">Pared</span>
+                    </div>
+                    <div class="piano-content">
+                        <h4 class="piano-title">Yamaha U3 Premium</h4>
+                        <ul class="piano-features">
+                            <li>Diseño acústico optimizado con costillas reforzadas.</li>
+                            <li>Teclado de abeto de grano fino con tacto equilibrado.</li>
+                            <li>Macillos de diseño exclusivo de la serie U.</li>
+                            <li>Atril extra ancho y cierre amortiguado del teclado.</li>
+                        </ul>
+                        <div class="piano-footer">
+                            <span class="piano-price">14.800 €</span>
+                            <button class="btn-buy" onclick="comprarPiano('Yamaha U3 Premium', '14.800 €')">Reservar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Piano 3: Bösendorfer 280VC -->
+                <div class="piano-card" data-category="cola">
+                    <div class="piano-img-container">
+                        <img src="https://images.unsplash.com/photo-1571974599782-87624638275e?auto=format&fit=crop&w=600&q=80" alt="Bösendorfer 280VC Concert" class="piano-img" />
+                        <span class="piano-tag">Edición Limitada</span>
+                    </div>
+                    <div class="piano-content">
+                        <h4 class="piano-title">Bösendorfer 280VC Vienna</h4>
+                        <ul class="piano-features">
+                            <li>Caja de resonancia fabricada con abeto resonante acústico.</li>
+                            <li>88 teclas contrapesadas de precisión de los Alpes austríacos.</li>
+                            <li>Diseño de marco acústico computarizado de alta resonancia.</li>
+                            <li>Sonido cálido y potente característico de Viena.</li>
+                        </ul>
+                        <div class="piano-footer">
+                            <span class="piano-price">185.000 €</span>
+                            <button class="btn-buy" onclick="comprarPiano('Bösendorfer 280VC Vienna', '185.000 €')">Reservar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Piano 4: Kawai GX-3 -->
+                <div class="piano-card" data-category="cola">
+                    <div class="piano-img-container">
+                        <img src="https://images.unsplash.com/photo-1566980601890-48fc2a90098f?auto=format&fit=crop&w=600&q=80" alt="Kawai GX-3 Blak" class="piano-img" />
+                        <span class="piano-tag">Estudio Profesional</span>
+                    </div>
+                    <div class="piano-content">
+                        <h4 class="piano-title">Kawai GX-3 Blak</h4>
+                        <ul class="piano-features">
+                            <li>Acción del teclado Millennium III con carbono ABS.</li>
+                            <li>Superficies de teclas NEOTEX que absorben la humedad.</li>
+                            <li>Caja armónica cónica de madera maciza seleccionada.</li>
+                            <li>Garantía de afinación ultraestable.</li>
+                        </ul>
+                        <div class="piano-footer">
+                            <span class="piano-price">32.500 €</span>
+                            <button class="btn-buy" onclick="comprarPiano('Kawai GX-3 Blak', '32.500 €')">Reservar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Piano 5: Roland LX-9 -->
+                <div class="piano-card" data-category="digital">
+                    <div class="piano-img-container">
+                        <img src="https://images.unsplash.com/photo-1548242485-6fcf017c6031?auto=format&fit=crop&w=600&q=80" alt="Roland LX-9 Luxury" class="piano-img" />
+                        <span class="piano-tag">Digital Premium</span>
+                    </div>
+                    <div class="piano-content">
+                        <h4 class="piano-title">Roland LX-9 Luxury</h4>
+                        <ul class="piano-features">
+                            <li>Modelado de sonido PureAcoustic Piano Engine.</li>
+                            <li>Teclado híbrido grand con simulación de escape de martillo.</li>
+                            <li>Sistema de audio de 8 altavoces espaciales acústicos.</li>
+                            <li>Conectividad Bluetooth para partituras y audio MIDI.</li>
+                        </ul>
+                        <div class="piano-footer">
+                            <span class="piano-price">6.200 €</span>
+                            <button class="btn-buy" onclick="comprarPiano('Roland LX-9 Luxury', '6.200 €')">Reservar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Piano 6: Casio Celviano GP-510 -->
+                <div class="piano-card" data-category="digital">
+                    <div class="piano-img-container">
+                        <img src="https://images.unsplash.com/photo-1552422535-c45813c61732?auto=format&fit=crop&w=600&q=80" alt="Casio Celviano GP-510" class="piano-img" />
+                        <span class="piano-tag">Híbrido</span>
+                    </div>
+                    <div class="piano-content">
+                        <h4 class="piano-title">Casio Celviano GP-510</h4>
+                        <ul class="piano-features">
+                            <li>Desarrollado en colaboración con C. Bechstein.</li>
+                            <li>Teclas físicas de madera natural de abeto austríaco.</li>
+                            <li>Generador acústico Grand Acoustic con simulación de sala.</li>
+                            <li>Acción de martillo de gran piano híbrido auténtica.</li>
+                        </ul>
+                        <div class="piano-footer">
+                            <span class="piano-price">3.999 €</span>
+                            <button class="btn-buy" onclick="comprarPiano('Casio Celviano GP-510', '3.999 €')">Reservar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SECCIÓN BLOG / bbPress FORO ================= -->
+        <section id="sec-blog" class="app-section">
+            <h3 class="section-title">Comunidad bbPress Forum</h3>
+            <p class="section-subtitle">Lee, opina y debate con apasionados del piano sobre técnicas, mantenimiento y partituras en Zaragoza.</p>
+
+            <div class="forum-container">
+                <div class="forum-header">
+                    <div class="forum-title">🗣️ Temas de Debate Activos</div>
+                    <button class="btn-forum-topic" id="btn-new-topic">+ Crear Nuevo Tema</button>
+                </div>
+
+                <!-- Formulario Crear Nuevo Tema (Oculto por defecto) -->
+                <div class="forum-new-topic-box" id="new-topic-form-box">
+                    <h4 style="color: var(--gold); margin-bottom: 1rem;">Publicar nuevo debate en el Foro bbPress</h4>
+                    <form id="forum-topic-form">
+                        <div class="form-group">
+                            <label>Título del Debate</label>
+                            <input type="text" id="forum-subject" class="form-control" placeholder="Ej. Recomendación de afinador de pianos en Zaragoza" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Mensaje / Contenido</label>
+                            <textarea id="forum-body" class="form-control" rows="5" placeholder="Escribe aquí tu pregunta o análisis..." required></textarea>
+                        </div>
+                        <div class="forum-actions">
+                            <button type="button" class="btn-cancel" id="btn-cancel-topic">Cancelar</button>
+                            <button type="submit" class="btn-buy">Publicar Tema</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Lista de Temas -->
+                <div class="forum-topics-list" id="forum-topics-container">
+                    <div class="topic-row">
+                        <div class="topic-info">
+                            <h4>Afinación en climas secos como Zaragoza</h4>
+                            <p>Iniciado por <strong>Carlos Granados</strong> en <em>Mantenimiento de Pianos</em></p>
+                        </div>
+                        <div class="topic-replies">
+                            <strong>12</strong> respuestas
+                        </div>
+                        <div class="topic-last-post">
+                            <p>Hace 2 horas</p>
+                            <p>por <em>L. Morte</em></p>
+                        </div>
+                    </div>
+
+                    <div class="topic-row">
+                        <div class="topic-info">
+                            <h4>¿Cómo empezar con el piano clásico a los 40 años?</h4>
+                            <p>Iniciado por <strong>Marta Arantegui</strong> en <em>Aprendizaje y Técnica</em></p>
+                        </div>
+                        <div class="topic-replies">
+                            <strong>28</strong> respuestas
+                        </div>
+                        <div class="topic-last-post">
+                            <p>Hace 1 día</p>
+                            <p>por <em>Prof. Zaragoza</em></p>
+                        </div>
+                    </div>
+
+                    <div class="topic-row">
+                        <div class="topic-info">
+                            <h4>Análisis acústico: Bösendorfer 280VC contra Steinway D-274</h4>
+                            <p>Iniciado por <strong>Administrador</strong> en <em>Comparativas de Pianos</em></p>
+                        </div>
+                        <div class="topic-replies">
+                            <strong>7</strong> respuestas
+                        </div>
+                        <div class="topic-last-post">
+                            <p>Hace 3 días</p>
+                            <p>por <em>Concertista_Zgz</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SECCIÓN COMUNIDAD / BuddyPress ================= -->
+        <section id="sec-comunidad" class="app-section">
+            <h3 class="section-title">Comunidad BuddyPress</h3>
+            <p class="section-subtitle">Únete a nuestra red social interna de pianistas, estudiantes y profesores en Aragón. Comparte tu progreso y haz contactos.</p>
+
+            <div class="community-container">
+                <!-- Sidebar Miembros Activos -->
+                <aside class="community-sidebar">
+                    <h3>👥 Miembros Activos</h3>
+                    <div class="member-list" id="buddypress-members">
+                        <div class="member-item">
+                            <div class="user-avatar" style="background:#5a67d8;">C</div>
+                            <div>
+                                <div class="member-name">Carlos Granados</div>
+                                <div class="member-role">Docente</div>
+                            </div>
+                            <div class="member-status"></div>
+                        </div>
+                        <div class="member-item">
+                            <div class="user-avatar" style="background:#48bb78;">M</div>
+                            <div>
+                                <div class="member-name">Marta Arantegui</div>
+                                <div class="member-role">Estudiante</div>
+                            </div>
+                            <div class="member-status"></div>
+                        </div>
+                        <div class="member-item">
+                            <div class="user-avatar" style="background:#ed8936;">J</div>
+                            <div>
+                                <div class="member-name">Jaime Soler</div>
+                                <div class="member-role">Pianista Amateur</div>
+                            </div>
+                            <div class="member-status"></div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Área Central de Acceso / Perfil BuddyPress -->
+                <div class="community-main" id="community-main-box">
+                    
+                    <!-- Simulación de Login Customizer al estilo Colorlib Login Customizer -->
+                    <div class="login-customizer-box" id="colorlib-login-box">
+                        <div class="login-customizer-logo">🎹</div>
+                        <h3>Acceso Pianistas</h3>
+                        
+                        <div class="login-tab-selector">
+                            <div class="login-tab active" id="tab-login" onclick="toggleLoginTabs('login')">Entrar</div>
+                            <div class="login-tab" id="tab-register" onclick="toggleLoginTabs('register')">Registrarse</div>
+                        </div>
+
+                        <!-- Formulario de Entrada -->
+                        <form id="colorlib-form-login" class="login-form-container">
+                            <div class="form-group">
+                                <label>Usuario o Email</label>
+                                <input type="text" id="login-username" class="form-control" placeholder="Escribe tu usuario" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña</label>
+                                <input type="password" id="login-password" class="form-control" placeholder="••••••••" required />
+                            </div>
+                            <button type="submit" class="btn-login-submit">Iniciar Sesión en BuddyPress</button>
+                        </form>
+
+                        <!-- Formulario de Registro (Oculto al inicio) -->
+                        <form id="colorlib-form-register" class="login-form-container" style="display: none;">
+                            <div class="form-group">
+                                <label>Nombre Completo</label>
+                                <input type="text" id="reg-name" class="form-control" placeholder="Ej. Juan Pérez" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre de Usuario</label>
+                                <input type="text" id="reg-username" class="form-control" placeholder="Ej. juan_piano" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Correo Electrónico</label>
+                                <input type="email" id="reg-email" class="form-control" placeholder="nombre@correo.com" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña</label>
+                                <input type="password" id="reg-password" class="form-control" placeholder="Crea una contraseña" required />
+                            </div>
+                            <button type="submit" class="btn-login-submit">Registrar Cuenta</button>
+                        </form>
+                    </div>
+
+                    <!-- Vista del perfil del usuario (Oculto al inicio) -->
+                    <div class="buddy-profile-view" id="buddy-profile-box" style="display: none;">
+                        <div class="buddy-avatar-large" id="profile-avatar-large">U</div>
+                        <div class="buddy-profile-info">
+                            <h3 id="profile-name">Nombre de Usuario</h3>
+                            <p id="profile-role">Pianista Profesional</p>
+                        </div>
+                        <div class="buddy-activity-feed">
+                            <h4>📢 Tu Feed de Actividad de BuddyPress</h4>
+                            <div class="buddy-feed-item">
+                                ¡Te has unido a la red <strong>Pianissimo Zaragoza</strong>! Completa tu perfil para que otros profesores y alumnos te conozcan.
+                            </div>
+                            <div class="buddy-feed-item">
+                                Has publicado en el foro: <em>"¡Hola a todos! Acabo de registrarme y me interesa el piano de cola Bösendorfer..."</em>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SECCIÓN APLICACIONES / DOCENTES ================= -->
+        <section id="sec-docentes" class="app-section">
+            <h3 class="section-title">Espacio para Docentes</h3>
+            <p class="section-subtitle">Herramientas pedagógicas interactivas para profesores de escuelas de música y conservatorios de Zaragoza.</p>
+
+            <div class="docentes-container">
+                <!-- Herramienta de Acordes -->
+                <div class="docentes-card">
+                    <h3>🎹 Visualizador Didáctico de Acordes</h3>
+                    <p>Selecciona un acorde para visualizar instantáneamente su composición de notas musicales en el mini teclado interactivo. Úsalo en tus clases presenciales o en línea.</p>
+                    
+                    <div class="chords-visualizer">
+                        <div class="chord-bubble active" data-chord="C">
+                            <span class="chord-name">Do Mayor</span>
+                            <span class="chord-notes">C - E - G</span>
+                        </div>
+                        <div class="chord-bubble" data-chord="Am">
+                            <span class="chord-name">La Menor</span>
+                            <span class="chord-notes">A - C - E</span>
+                        </div>
+                        <div class="chord-bubble" data-chord="G">
+                            <span class="chord-name">Sol Mayor</span>
+                            <span class="chord-notes">G - B - D</span>
+                        </div>
+                        <div class="chord-bubble" data-chord="F">
+                            <span class="chord-name">Fa Mayor</span>
+                            <span class="chord-notes">F - A - C</span>
+                        </div>
+                    </div>
+
+                    <!-- Mini Teclado Acorde -->
+                    <div class="chord-interactive-diagram">
+                        <span style="font-size: 0.85rem; color: var(--gold); margin-bottom: 0.5rem;" id="chord-display-text">Notas activas: C4 (Do), E4 (Mi), G4 (Sol)</span>
+                        <div class="chord-piano-mini" id="mini-piano-chords">
+                            <!-- Teclado de 8 teclas blancas y 5 negras -->
+                            <div class="mini-key active" id="mkey-0"></div> <!-- C -->
+                            <div class="mini-key black" id="mkey-b0"></div>
+                            <div class="mini-key" id="mkey-1"></div>        <!-- D -->
+                            <div class="mini-key black" id="mkey-b1"></div>
+                            <div class="mini-key active" id="mkey-2"></div> <!-- E -->
+                            <div class="mini-key" id="mkey-3"></div>        <!-- F -->
+                            <div class="mini-key black" id="mkey-b2"></div>
+                            <div class="mini-key" id="mkey-4"></div>        <!-- G -->
+                            <div class="mini-key black" id="mkey-b3"></div>
+                            <div class="mini-key" id="mkey-5"></div>        <!-- A -->
+                            <div class="mini-key black" id="mkey-b4"></div>
+                            <div class="mini-key" id="mkey-6"></div>        <!-- B -->
+                            <div class="mini-key active" id="mkey-7"></div> <!-- C2 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Descarga de Partituras -->
+                <div class="docentes-card">
+                    <h3>📚 Repositorio de Partituras Didácticas</h3>
+                    <p>Accede de forma gratuita a nuestra biblioteca digital con adaptaciones de partituras clásicas, ejercicios de Hanon, Czerny y obras completas listas para imprimir en formato PDF.</p>
+                    
+                    <ul class="piano-features" style="margin-bottom: 2rem; font-size: 0.95rem;">
+                        <li><strong>J.S. Bach</strong> - Primeros pasos al piano (18 ejercicios anotados)</li>
+                        <li><strong>L. van Beethoven</strong> - Para Elisa (Estudio facilitado con números de dedos)</li>
+                        <li><strong>F. Chopin</strong> - Vals en La Menor (Edición Urtext con notas pedal)</li>
+                        <li><strong>C. Czerny</strong> - Op. 599 (El primer maestro de piano completo)</li>
+                    </ul>
+
+                    <button class="btn-buy" style="width: 100%;" onclick="alert('Descargando compendio pedagógico en PDF. ¡Música para tus alumnos!');">📥 Descargar Compendio Pedagógico Completo (PDF)</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SECCIÓN APLICACIONES / LÚDICAS (PIANO JUGABLE) ================= -->
+        <section id="sec-ludicas" class="app-section">
+            <h3 class="section-title">Piano Digital Interactivo</h3>
+            <p class="section-subtitle">¡Prueba nuestro piano jugable en línea! Activa el audio, pulsa las teclas con el ratón o utiliza el teclado físico de tu ordenador para tocar melodías en tiempo real.</p>
+
+            <div class="ludicas-container">
+                <div class="piano-controls">
+                    <label class="control-toggle">
+                        <input type="checkbox" id="chk-key-guides" checked /> Mostrar guías de teclado físico (A, S, D, F...)
+                    </label>
+                    <div>
+                        <span style="font-size: 0.9rem; color: var(--gold); margin-right: 0.5rem;">Timbre (Web Audio API):</span>
+                        <select id="piano-osc-type" class="form-control" style="display:inline-block; width:auto; padding: 0.3rem 1rem;">
+                            <option value="sine">Piano Suave (Seno)</option>
+                            <option value="triangle" selected>Piano Clásico (Triángulo)</option>
+                            <option value="square">Piano de Sintetizador (Cuadrado)</option>
+                            <option value="sawtooth">Piano Brillante (Diente de Sierra)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Teclado del Piano Virtual de 2 Octavas -->
+                <div class="piano-keyboard-container">
+                    <div class="piano-keys-wrapper" id="piano-keys-wrapper">
+                        <!-- Octava 1 -->
+                        <div class="piano-key white" data-note="261.63" data-name="C4" data-char="A"><span class="key-label">A</span><span class="key-note-label">Do</span></div>
+                        <div class="piano-key black" data-note="277.18" data-name="C#4" data-char="W"><span class="key-label">W</span><span class="key-note-label">Do#</span></div>
+                        <div class="piano-key white" data-note="293.66" data-name="D4" data-char="S"><span class="key-label">S</span><span class="key-note-label">Re</span></div>
+                        <div class="piano-key black" data-note="311.13" data-name="D#4" data-char="E"><span class="key-label">E</span><span class="key-note-label">Re#</span></div>
+                        <div class="piano-key white" data-note="329.63" data-name="E4" data-char="D"><span class="key-label">D</span><span class="key-note-label">Mi</span></div>
+                        <div class="piano-key white" data-note="349.23" data-name="F4" data-char="F"><span class="key-label">F</span><span class="key-note-label">Fa</span></div>
+                        <div class="piano-key black" data-note="369.99" data-name="F#4" data-char="T"><span class="key-label">T</span><span class="key-note-label">Fa#</span></div>
+                        <div class="piano-key white" data-note="392.00" data-name="G4" data-char="G"><span class="key-label">G</span><span class="key-note-label">Sol</span></div>
+                        <div class="piano-key black" data-note="415.30" data-name="G#4" data-char="Y"><span class="key-label">Y</span><span class="key-note-label">Sol#</span></div>
+                        <div class="piano-key white" data-note="440.00" data-name="A4" data-char="H"><span class="key-label">H</span><span class="key-note-label">La</span></div>
+                        <div class="piano-key black" data-note="466.16" data-name="A#4" data-char="U"><span class="key-label">U</span><span class="key-note-label">La#</span></div>
+                        <div class="piano-key white" data-note="493.88" data-name="B4" data-char="J"><span class="key-label">J</span><span class="key-note-label">Si</span></div>
+                        
+                        <!-- Octava 2 -->
+                        <div class="piano-key white" data-note="523.25" data-name="C5" data-char="K"><span class="key-label">K</span><span class="key-note-label">Do</span></div>
+                        <div class="piano-key black" data-note="554.37" data-name="C#5" data-char="O"><span class="key-label">O</span><span class="key-note-label">Do#</span></div>
+                        <div class="piano-key white" data-note="587.33" data-name="D5" data-char="L"><span class="key-label">L</span><span class="key-note-label">Re</span></div>
+                        <div class="piano-key black" data-note="622.25" data-name="D#5" data-char="P"><span class="key-label">P</span><span class="key-note-label">Re#</span></div>
+                        <div class="piano-key white" data-note="659.25" data-name="E5" data-char="Ñ"><span class="key-label">Ñ</span><span class="key-note-label">Mi</span></div>
+                        <div class="piano-key white" data-note="698.46" data-name="F5" data-char="Z"><span class="key-label">Z</span><span class="key-note-label">Fa</span></div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--ivory-muted);">💡 <strong>Consejo:</strong> Presiona las teclas correspondientes de tu teclado alfanumérico para tocar acordes y melodías completas de forma fluida.</p>
+            </div>
+        </section>
+
+
+        <!-- ================= SECCIÓN CONTACTO / FORMULARIO ================= -->
+        <section id="sec-contacto" class="app-section">
+            <h3 class="section-title">Contacto & Asesoría</h3>
+            <p class="section-subtitle">¿Deseas concertar una cita para probar un Steinway en nuestro showroom de Zaragoza? Contáctanos y te responderemos de inmediato.</p>
+
+            <div class="contact-container">
+                <!-- Información y Geolocalización -->
+                <div class="contact-info-panel">
+                    <div class="info-card">
+                        <span class="info-card-icon">📍</span>
+                        <div class="info-card-content">
+                            <h4>Showroom en Zaragoza</h4>
+                            <p>Paseo de la Independencia, 24, Centro, 50004 Zaragoza</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <span class="info-card-icon">✉️</span>
+                        <div class="info-card-content">
+                            <h4>Correo de Contacto Oficial</h4>
+                            <p><a href="mailto:granadoslastral@iesandalan.es">granadoslastral@iesandalan.es</a></p>
+                        </div>
+                    </div>
+
+                    <!-- Geolocation IP Detection (Simulado del plugin de WordPress) -->
+                    <div class="geo-detection-badge" id="geo-info-badge">
+                        <div class="geo-flag" id="geo-flag">🇪🇸</div>
+                        <div class="geo-text">
+                            <h5>📍 Geolocalización Activa (Lead Info Country)</h5>
+                            <p id="geo-location-details">Detectando procedencia...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario Contact Form 7 -->
+                <div class="cf7-form-wrapper">
+                    <h4 style="color: var(--gold); margin-bottom: 1.5rem; font-family: 'Playfair Display', serif;">Enviar mensaje (Simulación Contact Form 7)</h4>
+                    
+                    <form id="pianissimo-cf7-form" class="login-form-container">
+                        <div class="form-group">
+                            <label>Tu Nombre completo</label>
+                            <input type="text" id="cf7-name" class="form-control" placeholder="Escribe tu nombre" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Correo Electrónico</label>
+                            <input type="email" id="cf7-email" class="form-control" placeholder="nombre@correo.com" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Asunto / Piano de Interés</label>
+                            <input type="text" id="cf7-subject" class="form-control" placeholder="Ej. Solicitud de prueba Steinway D-274" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Mensaje</label>
+                            <textarea id="cf7-message" class="form-control" rows="4" placeholder="Escribe tus dudas o requerimientos aquí..." required></textarea>
+                        </div>
+
+                        <!-- CAPTCHA 4WP (Google Cuenta G Style) -->
+                        <div class="captcha-wrapper">
+                            <div class="captcha-checkbox-container" id="captcha-checkbox-btn">
+                                <div class="captcha-box" id="captcha-box-square"></div>
+                                <span class="captcha-text">No soy un robot (CAPTCHA 4WP)</span>
+                            </div>
+                            <span class="captcha-logo">🛡️</span>
+                        </div>
+
+                        <button type="submit" class="btn-buy" style="width: 100%;">📨 Enviar Mensaje Seguro</button>
+                    </form>
+                    <p style="font-size: 0.75rem; color: var(--ivory-muted); text-align: center; margin-top: 1rem;">
+                         🛡️ Formulario protegido activamente con <strong>Akismet Anti-Spam</strong> y georreferenciado en base de datos.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4 style="font-family: 'Playfair Display', serif; font-size: 1.3rem;">Pianissimo</h4>
+                <p style="font-size: 0.8rem; color: var(--ivory-muted); line-height: 1.6; margin-top: 0.5rem;">Afinando emociones, vendiendo leyendas en Zaragoza y toda España.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Estructura Web</h4>
+                <ul class="footer-links">
+                    <li><a class="nav-link" data-target="sec-inicio">Inicio / Home</a></li>
+                    <li><a class="nav-link" data-target="sec-blog">Foro bbPress</a></li>
+                    <li><a class="nav-link" data-target="sec-comunidad">BuddyPress Social</a></li>
+                    <li><a class="nav-link" data-target="sec-contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Soporte</h4>
+                <ul class="footer-links">
+                    <li><a style="cursor: pointer;" onclick="alert('Este es un portal simulado con fines demostrativos que reproduce todos los plugins de WordPress requeridos.')">Aviso Legal</a></li>
+                    <li><a href="mailto:granadoslastral@iesandalan.es">granadoslastral@iesandalan.es</a></li>
+                    <li><p style="font-size:0.8rem; color: var(--ivory-muted);">Zaragoza, España</p></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Pianissimo Zaragoza. Todos los derechos reservados. | Diseñado con especificaciones 3.4.1 y 3.4.2</p>
+        </div>
+    </footer>
+
+
+    <!-- ================= FLOATING PLUGINS CONTROLS ================= -->
+
+    <!-- Joinchat (WhatsApp Plugin) Widget -->
+    <div class="joinchat-widget" id="joinchat-widget-box">
+        <div class="joinchat-bubble" id="joinchat-chat-bubble">
+            <div class="joinchat-agent-header">
+                <span style="font-size: 1.2rem;">👨‍🔧</span>
+                <div>
+                    <div class="joinchat-agent-name">Asesor Pianissimo</div>
+                    <span style="font-size: 0.7rem; color: #28a745;">Online • Zaragoza</span>
+                </div>
+            </div>
+            <p>¡Hola! Soy experto en afinación. ¿Qué piano Steinway, Yamaha o Bösendorfer te interesa probar hoy?</p>
+            <button class="btn-buy" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; margin-top: 0.5rem; width: 100%; background: #25D366; color: white;" onclick="alert('Abriendo chat de WhatsApp simulado con el especialista de Pianissimo Zaragoza para resolver tus consultas.');">Iniciar Chat</button>
+        </div>
+        <button class="joinchat-btn" id="joinchat-btn-trigger">💬</button>
+    </div>
+
+    <!-- Yoast SEO Auditor Sidebar Widget (Admin Helper) -->
+    <div class="yoast-widget-toggle" id="yoast-widget-btn">
+        <span class="yoast-bullet" id="yoast-overall-light"></span>
+        <span>SEO Yoast Auditor</span>
+    </div>
+
+    <aside class="yoast-sidebar" id="yoast-sidebar-panel">
+        <div class="yoast-header">
+            <div class="yoast-title">🟢 Yoast SEO Auditor</div>
+            <button class="yoast-close-btn" id="yoast-close-btn">&times;</button>
+        </div>
+
+        <div class="yoast-analysis-section">
+            <p style="font-size: 0.8rem; color: var(--ivory-muted); line-height: 1.4; margin-bottom: 0.5rem;">
+                <strong>Análisis en vivo de la pestaña actual:</strong> Escanea palabras clave, legibilidad y meta-etiquetas.
+            </p>
+            
+            <div class="yoast-score-card">
+                <div class="yoast-score-title">
+                    <span class="yoast-indicator green"></span>
+                    <span>Análisis SEO</span>
+                </div>
+                <ul class="yoast-score-list">
+                    <li><span class="yoast-indicator green"></span> Frase clave objetivo: Detectada en el título ("Pianissimo").</li>
+                    <li><span class="yoast-indicator green"></span> Densidad de palabra clave: Correcta (1.4% de menciones).</li>
+                    <li><span class="yoast-indicator orange" id="yoast-meta-desc"></span> Meta descripción: Longitud optimizada en Zaragoza.</li>
+                </ul>
+            </div>
+
+            <div class="yoast-score-card">
+                <div class="yoast-score-title">
+                    <span class="yoast-indicator green"></span>
+                    <span>Análisis de Legibilidad</span>
+                </div>
+                <ul class="yoast-score-list">
+                    <li><span class="yoast-indicator green"></span> Facilidad de lectura Flesch: Excelente (Castellano estándar).</li>
+                    <li><span class="yoast-indicator green"></span> Variedad de frases: Muy buena, distribución fluida.</li>
+                    <li><span class="yoast-indicator green"></span> Voz pasiva: Solo 2.5%, cumple los estándares recomendados.</li>
+                </ul>
+            </div>
+
+            <!-- Ajustes de Administrador: Control de LightStart Maintenance Mode -->
+            <div class="yoast-admin-settings">
+                <h4>⚙️ Controles del Administrador</h4>
+                <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 0.75rem; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.05);">
+                    <span style="font-size: 0.8rem; color: var(--ivory-muted);">Modo Mantenimiento (LightStart)</span>
+                    <button class="btn-buy" id="yoast-toggle-maintenance-btn" style="font-size: 0.75rem; padding: 0.3rem 0.6rem; background: #8b0d11; color: white;">Activar</button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Inclusión del Script de Interacción -->
+    <script src="app.js"></script>
+</body>
+</html>
